@@ -1,15 +1,21 @@
-num_file=$(ls -1 | wc -l)
+num_file=$(ls -Aq | wc -l)
 response=-1
 
 function compare_results {
-if [[ $1 -eq $2 ]]
+re='^[0-9]+$'
+if [[ $1 =~ $re ]]
 then
-echo "Congrats! You got it right! The number of files in the current directory is $response."
-elif [[ $1 -lt $2 ]]
-then
-echo "There are more than $response file(s)! Try again."
+	if [[ $1 -eq $2 ]]
+	then
+	echo "Congrats! You got it right! The number of files in the current directory is $response."
+	elif [[ $1 -lt $2 ]]
+	then
+	echo "There are more than $response file(s)! Try again."
+	else
+	echo "There are less than $response file(s)! Try again."
+	fi
 else
-echo "There are less than $response file(s)! Try again."
+	echo "Not an allowed input. Only input positive integer. Try again."
 fi
 }
 
