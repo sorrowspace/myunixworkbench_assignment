@@ -19,7 +19,7 @@ else
 fi
 }
 
-while [[ $response -ne $num_file ]]
+while [[ "$response" != "$num_file" ]]
 do
 echo "Guess how many files are in the current directory?"
 read response
